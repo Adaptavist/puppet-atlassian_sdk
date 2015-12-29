@@ -1,4 +1,4 @@
-define atlassian_sdk::download_and_extract($version = $title, $installdir, $baseurl, $user, $group) {
+define atlassian_sdk::download_and_extract($installdir, $baseurl, $user, $group, $version = $title) {
     $dirname = "atlassian-plugin-sdk-${version}"
     $filename = "${dirname}.tar.gz"
     $target = "${installdir}/${filename}"
