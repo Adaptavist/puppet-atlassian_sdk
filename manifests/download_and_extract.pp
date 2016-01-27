@@ -3,9 +3,9 @@ define atlassian_sdk::download_and_extract($installdir, $baseurl, $user, $group,
     $filename = "${dirname}.tar.gz"
     $target = "${installdir}/${filename}"
     exec { "Download ${filename}":
-        command => "wget -q ${baseurl}/${version}/${filename} -O ${target}",
+        command => "curl -s -L ${baseurl}/${version}/${filename} -o ${target}",
         creates => $target,
-        require => File[$installdir]
+        require => [File[$installdir], Package['curl']]
     }
     ->
     exec { "Extract ${target}":
