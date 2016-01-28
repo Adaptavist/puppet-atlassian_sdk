@@ -2,10 +2,17 @@ define atlassian_sdk::download_and_extract($installdir, $baseurl, $user, $group,
     $dirname = "atlassian-plugin-sdk-${version}"
     $filename = "${dirname}.tar.gz"
     $target = "${installdir}/${filename}"
+
+    if ! defined( Package['curl'] ) {
+        package { 'curl':
+            ensure => 'installed',
+        }
+    }
+
     exec { "Download ${filename}":
-        command => "wget -q ${baseurl}/${version}/${filename} -O ${target}",
+        command => "curl -s -L ${baseurl}/${version}/${filename} -o ${target}",
         creates => $target,
-        require => File[$installdir]
+        require => [File[$installdir], Package['curl']]
     }
     ->
     exec { "Extract ${target}":
