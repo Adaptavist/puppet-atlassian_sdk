@@ -1,5 +1,5 @@
 name 'adaptavist/atlassian_sdk'
-version '0.1.10'
+version '1.0.0'
 source 'https://github.com/Adaptavist/puppet-atlassian_sdk.git'
 author 'adaptavist'
 summary 'atlassian_sdk Module' 
